@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+    td {
+        border: 1px solid brown;
+        /* width: 30px; */
+    }
+
+    tr {
+        width: 300px;
+    }
+
+    input,
+    button {
+        float: right;
+    }
+</style>
+
+<body>
+    <h1>Hello from div div div</h1>
+    <h2>Create new address by filling out the form below</h2>
+    <!-- <h3>Message <%=${message} %></h3> -->
+    <form method="POST" action="/createAddress">
+        <table>
+            <tr>
+                <td><label>Id: <input name="id" value="{{rows[0]}}" placeholder="" /></label><br></td>
+            </tr>
+            <tr>
+                <td>
+                    <label>User id: <input name="user_id" value="" placeholder="" /></label></td>
+            </tr>
+            <tr>
+                <td><label>Title: <input name="province" value="" placeholder="" /></label></td>
+            </tr>
+            <tr>
+                <td><label>District: <input name="district" value="" placeholder="" /></label></td>
+            </tr>
+            <tr>
+                <td><label>Ward: <input name="ward" value="" placeholder="" /></label></td>
+            </tr>
+            <tr>
+                <td><label>Address: <input name="address" value="" placeholder="" /></label></td>
+            </tr>
+            <tr>
+                <td><label>Date created: <input name="date_created" value="" placeholder="" /></label></td>
+            </tr>
+            <tr>
+                <td><button type="submit">Submit</button></td>
+            </tr>
+
+        </table>
+    </form>
+    <script>
+        $.ajax({
+            url: '/PostDashboard',
+            complete: function (data) {
+                debugger    
+                console.log(message);
+            }
+        });
+
+        // $.ajax({
+        //     url: '/test',
+        //     complete: function (data) {
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+</body>
+
+</html>

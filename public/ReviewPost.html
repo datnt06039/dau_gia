@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+    td {
+        border: 1px solid brown;
+        /* width: 30px; */
+    }
+
+    tr {
+        width: 300px;
+    }
+
+    input,
+    button {
+        float: right;
+    }
+</style>
+
+<body>
+    <h1>Hello from div div div</h1>
+    <h2>Create new address by filling out the form below</h2>
+    <!-- <h3>Message <%=${message} %></h3> -->
+    <form method="POST" action="ReviewPost" id="">
+        <table>
+            <tr>
+                <td><label>product_id: <input name="product_id" id="product_id" value="1" placeholder="" /></label><br></td>
+            </tr>
+            <tr>
+                <td>
+                    <label>admin_id: <input id="admin_id" name="admin_id" value="" placeholder="" /></label></td>
+            </tr>
+            <tr>
+                <td><label>Title: <input name="title" value="dgfg  title" placeholder="" /></label></td>
+            </tr>
+            <tr>
+                <td><label>weight: <input name="weight" value="24" placeholder="" /></label></td>
+            </tr>
+            <tr>
+                <td><label>fruit_pct: <input name="fruit_pct" value="44" placeholder="" /></label></td>
+            </tr>
+            <tr>
+                <td><label>sugar_pct: <input name="sugar_pct" value="44" placeholder="" /></label></td>
+            </tr>
+            <tr>
+                <td><label>weight_avg: <input name="weight_avg" value="44" placeholder="" /></label></td>
+            </tr>
+            <tr>
+                <td><label>diameter_avg: <input name="diameter_avg" value="44" placeholder="" /></label></td>
+            </tr>
+            <tr>
+                <td><label>price_int: <input name="price_int" value="22" placeholder="" /></label></td>
+            </tr>
+            <tr>
+                <td><label>price_step: <input name="price_step" value="32" placeholder="" /></label></td>
+            </tr>
+            <tr>
+                <td><label>notes: <input name="notes" value="gfgh notes" /></label></td>
+            </tr>
+            <tr>
+                <td><label>date_created: <input name="date_created" value="2020/7/13" placeholder="" /></label></td>
+            </tr>
+            <tr>
+                <td><button type="submit">Submit</button></td>
+            </tr>
+
+        </table>
+    </form>
+    <script>
+        $('#ReviewPostId').validator().on('submit', function(e){
+        if(!e.isDefaultPrevented()){
+            e.preventDefault();
+            $.ajax({
+                method: 'GET',
+                url: '/ReviewPost',
+                data: {
+                    // product_id: $('#product_id').val(),
+                    // admin_id: $('#admin_id').val(),
+                }
+            })
+            .done(function(msg){
+                // showNotification(msg.message, 'success', false, '/admin/login');
+                console.log('reviewForm sent successfully')
+            })
+            .fail(function(msg){
+                // showNotification(msg.responseJSON.message, 'danger');
+                console.log('reviewForm sent fail')
+            });
+        }
+    });
+       
+    </script>
+</body>
+
+</html>
