@@ -58,24 +58,6 @@ app.post('/ReviewPost', (req, res) => {
     console.log('Review post done! :p')
 })
 
-// const product_update_request = class {
-//     constructor(product_id, admin_id, title, weight, fruit_pct, sugar_pct, weight_avg
-//         , diameter_avg, price_int, price_step, notes, date_created) {
-//         this.product_id =product_id;
-//         this.admin_id = admin_id;
-//         this.title = title;
-//         this.weight =weight;
-//         this.fruit_pct = fruit_pct;
-//         this.sugar_pct = sugar_pct;
-//         this.weight_avg = weight_avg;
-//         this.diameter_avg = diameter_avg;
-//         this.price_int = price_int;
-//         this.price_step = price_step;
-//         this.notes = notes;
-//         this.date_created = date_created;
-//     }
-// }
-
 app.get('/?id', (req, res) => {
     const id = req.params.id;
     console.log("eeee id: " + id);
@@ -121,10 +103,35 @@ app.get('/SearchByProductTitle.html', (req, res)=>{
     // app.render('./SearchByProductTitle')
 })
 
-//Get all bidding product by user id
+//Paging bidding product
 app.get('/PagingForBiddingProduct/:currentPage', (req, res)=>{
     mod.PagingForBiddingProduct(req, res);
 })
+
+//Get all bidded product by user id
+app.get('/getAllBiddedProduct/:userId', (req, res)=>{
+    mod.getAllBiddedProduct(req, res);
+})
+
+app.get('/SearchInBiddedProduct.html', (req, res)=>{
+})
+
+app.post('/searchInBiddedProduct', (req, res)=>{
+    console.log('Access searchInBiddedProduct, transmit params to the commented function below')
+    mod.searchInBiddedProduct(req, res)
+})
+
+//========================================//
+//=====================Create basic CRUD==//
+////////////////////////////////////////////
+
+//deposit table
+//select all/id
+app.get('/selectFromDeposit/:depositId', (req, res)=>{
+    // mod.selectFromDeposit(req, res);
+})
+
+
 
 app.listen(3003)
 

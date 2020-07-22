@@ -531,12 +531,13 @@ exports.SearchBiddingProductByTitle = function (req, res) {
     })
 }
 
-//Screen name: UserInfo - 1
-//Function name: PagingForBiddingProduct
+//Screen name: UserInfo - 1, UserInfo - 3
+//Function name: PagingProduct
 //Description: List all products which user created
 //Param(s): current page
 //Created by: HaPTH
-exports.PagingForBiddingProduct = function (productList,req, res) {
+exports.PagingProduct = function (productList,req, res) {
+    console.log('Access function PagingProduct')
     var destinationPage = req.params.destinationPage
     var recordPerPage = req.params.recordPerPage
     var elementFrom = (destinationPage-1) * recordPerPage
@@ -548,6 +549,69 @@ exports.PagingForBiddingProduct = function (productList,req, res) {
     }
     res.json(getRows)
 }
+
+//=============================//
+//===Sản phẩm bạn mua==========//
+//=============================//
+
+//Screen name: UserInfo - 3
+//Function name: getAllBiddedProduct
+//Description: List all products which user created
+//Param(s): userId
+//Created by: HaPTH
+exports.getAllBiddedProduct = function(req, res){
+    var userId = req.params.userId
+    console.log('Access function getAllBiddedProduct')
+    var queryStr = "select distinct u.id as user_id, p.id as 'product_id', p.title, p.price_cur as 'current_price', datediff(a.date_closure, a.date_created) 'remain_day'"
+    +" , p.weight, ad.province, a.date_created, p.status"
+    +" from `semo_2.0`.user u "
+    +" left join `semo_2.0`.product p on p.user_id = u.id"
+    +" left join `semo_2.0`.product_media pm on p.id = pm.product_id"
+    +" left join `semo_2.0`.auction a on p.id = a.product_id"
+    +" left join `semo_2.0`.address ad on p.user_id = ad.user_id"
+    +" left join `semo_2.0`.auction_bid ab on u.id = ab.bidder_user_id"
+    +" where u.id = ? and p.status = 4 or p.status = 5"
+    +" order by a.date_created desc"
+    con.query(queryStr, [userId], function (err, results) {
+        if (err) {
+            throw err
+            console.log('Error ocurr when access the database, err message: ' + err)
+        }
+        console.log(results)
+        res.json(results)
+    })
+}
+
+//Screen name: UserInfo - 3
+//Function name: searchInBiddedProduct
+//Description: Search product by product tilte from bidded product
+//Param(s): userId, productTitle
+//Created by: HaPTH
+exports.searchInBiddedProduct = function(req, res){
+    var userId = req.body.userId
+    var productTitle = req.body.productTitle
+    console.log('Access function searchInBiddedProduct')
+    var queryStr = "select distinct u.id as user_id, p.id as 'product_id', p.title, p.price_cur as 'current_price', datediff(a.date_closure, a.date_created) 'remain_day'"
+    +" , p.weight, ad.province, a.date_created, p.status"
+    +" from `semo_2.0`.user u "
+    +" left join `semo_2.0`.product p on p.user_id = u.id"
+    +" left join `semo_2.0`.product_media pm on p.id = pm.product_id"
+    +" left join `semo_2.0`.auction a on p.id = a.product_id"
+    +" left join `semo_2.0`.address ad on p.user_id = ad.user_id"
+    +" left join `semo_2.0`.auction_bid ab on u.id = ab.bidder_user_id"
+    +" where u.id = ? and (p.status = 4 or p.status = 5)  and p.title like '%" + productTitle + "%'"
+    +" order by a.date_created desc"
+    con.query(queryStr, [userId], function (err, results) {
+        if (err) {
+            throw err
+            console.log('Error ocurr when access the database, err message: ' + err)
+        }
+        console.log(results)
+        res.json(results)
+    })
+}
+
+
 
 module.exports.insertNewInformationOfFruit = insertNewInformationOfFruit
 module.exports.insertNewFruit = insertNewFruit
