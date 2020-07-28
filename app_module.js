@@ -8,6 +8,12 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static('./public'))
 
+app.get('/', (req, res) => {
+    // const productId = req.params.productId
+    // mod.adminReview(productId, req, res)
+    res.sendfile('./public/ReviewPost.html')
+})
+
 // app.get('/selectAllFruit', (req, res) => {
 //     mod.selectAllFruit(req, res)
 // })
@@ -31,11 +37,6 @@ app.use(express.static('./public'))
 
 // app.get('/AdminReview/:productId', (req, res) => {
 //     mod.adminReview(req, res)
-//     res.sendfile('./public/ReviewPost.html')
-// })
-// app.get('/', (req, res) => {
-//     // const productId = req.params.productId
-//     // mod.adminReview(productId, req, res)
 //     res.sendfile('./public/ReviewPost.html')
 // })
 
