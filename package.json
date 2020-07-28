@@ -3,20 +3,25 @@
   "version": "1.0.0",
   "engines": {
     "node": "12.11.1"
-    },
+  },
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": " ",
-    "start": "node app_module.js"
-  },
+    "dev": "react-scripts start",
+    "start": "serve -s build",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "npm run build"
+    },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "morgan": "^1.10.0",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "serve": "^11.3.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
