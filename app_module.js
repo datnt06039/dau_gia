@@ -48,9 +48,9 @@ app.get('/', (req, res) => {
 //     mod.getFruits(req, res);
 // })
 
-// app.get('/newestPosts', (req, res)=>{
-//     mod.getNewestPosts(res);
-// })
+app.get('/newestPosts', (req, res)=>{
+    mod.getNewestPosts(res);
+})
 
 // app.get('/oldestPosts', (req, res)=>{
 //     mod.getOldestPost(res);
