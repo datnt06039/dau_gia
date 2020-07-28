@@ -126,10 +126,24 @@ app.post('/searchInBiddedProduct', (req, res)=>{
 ////////////////////////////////////////////
 
 //deposit table
-//select all/id
+//select row by id
 app.get('/selectFromDeposit/:depositId', (req, res)=>{
-    // mod.selectFromDeposit(req, res);
+    mod.selectFromDepositById(req, res);
 })
+
+//select all rows
+app.get('/selectAllFromDeposit', (req, res)=>{
+    mod.selectAllFromDeposit(req, res);
+})
+
+//insert many row into deposit table
+app.get('/insertRowsDepositTable', (req, res)=>{
+    var nextDepositId = mod.insertRowsDepositTable(req, res);
+    console.log('insertRowsDepositTable: '+nextDepositId)
+    res.json(nextDepositId)
+})
+
+
 
 
 

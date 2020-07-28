@@ -612,6 +612,76 @@ exports.searchInBiddedProduct = function(req, res){
 }
 
 
+//Screen name: None
+//Function name: selectFromDepositById
+//Description: Get row from deposit table by id
+//Param(s): None
+//Created by: HaPTH
+exports.selectFromDepositById = function(req, res){
+    var depositId = req.params.depositId
+    console.log('Access function selectFromDepositById')
+    var queryStr = "SELECT * FROM `semo_2.0`.deposit where id like '%"+ depositId +"%'"
+    con.query(queryStr, function (err, results) {
+        if (err) {
+            throw err
+            console.log('Error ocurr when access the database, err message: ' + err)
+        }
+        console.log(results)
+        res.json(results)
+    })
+}
+
+//Screen name: None
+//Function name: selectAllFromDeposit
+//Description: Get all row from deposit table
+//Param(s): None
+//Created by: HaPTH
+exports.selectAllFromDeposit = function(req, res){
+    var depositId = req.params.depositId
+    console.log('Access function selectAllFromDeposit')
+    var queryStr = "SELECT * FROM `semo_2.0`.deposit"
+    con.query(queryStr, function (err, results) {
+        if (err) {
+            throw err
+            console.log('Error ocurr when access the database, err message: ' + err)
+        }
+        console.log(results)
+        res.json(results)
+    })
+}
+
+//Screen name: None
+//Function name: insertRowsDepositTable
+//Description: Insert many row into deposit table
+//Param(s): None
+//Created by: HaPTH
+exports.insertRowsDepositTable = function(req, res){
+    var queryGetMaxId = "select max(id) from `semo_2.0`.deposit"
+    var depositId;
+    con.query(queryGetMaxId, function(err, result){
+        if(err){
+            console.log('Error ocurr when access the database, err message: ' + err)
+            throw err
+        }
+        depositId = result[0]['max(id)'] + 1;
+    }) 
+    console.log(depositId)
+
+    // res.json(depositId)
+
+    ////Insert new row
+    // var insertQueryStr = "INSERT INTO `semo_2.0`.`deposit`(`id`,`src_wallet_id`,`product_id`,`amount`,`notes`,`date_created`)"
+    // + " VALUES(?,1,1,100000,'Note 11','2020/07/2 22:22:00') "
+    // con.query(insertQueryStr, [depositId],
+    //     function(err, result){
+    //         if(err){
+    //             console.log('Error ocurr when access the database, err message: ' + err)
+    //             throw err
+    //         }
+    //         console.log(result.affectedRows)
+    //         res.json(result.affectedRows)
+    //     })
+}
 
 module.exports.insertNewInformationOfFruit = insertNewInformationOfFruit
 module.exports.insertNewFruit = insertNewFruit

@@ -30,7 +30,8 @@
     <form method="POST" action="ReviewPost" id="">
         <table>
             <tr>
-                <td><label>product_id: <input name="product_id" id="product_id" value="1" placeholder="" /></label><br></td>
+                <td><label>product_id: <input name="product_id" id="product_id" value="1" placeholder="" /></label><br>
+                </td>
             </tr>
             <tr>
                 <td>
@@ -73,29 +74,39 @@
         </table>
     </form>
     <script>
-        $('#ReviewPostId').validator().on('submit', function(e){
-        if(!e.isDefaultPrevented()){
-            e.preventDefault();
-            $.ajax({
-                method: 'GET',
-                url: '/ReviewPost',
-                data: {
-                    // product_id: $('#product_id').val(),
-                    // admin_id: $('#admin_id').val(),
-                }
-            })
-            .done(function(msg){
-                // showNotification(msg.message, 'success', false, '/admin/login');
-                console.log('reviewForm sent successfully')
-            })
-            .fail(function(msg){
-                // showNotification(msg.responseJSON.message, 'danger');
-                console.log('reviewForm sent fail')
-            });
-        }
-    });
-       
+        $('#ReviewPostId').validator().on('submit', function (e) {
+            if (!e.isDefaultPrevented()) {
+                e.preventDefault();
+                $.ajax({
+                    method: 'GET',
+                    url: '/ReviewPost',
+                    data: {
+                        // product_id: $('#product_id').val(),
+                        // admin_id: $('#admin_id').val(),
+                    }
+                })
+                    .done(function (msg) {
+                        // showNotification(msg.message, 'success', false, '/admin/login');
+                        console.log('reviewForm sent successfully')
+                    })
+                    .fail(function (msg) {
+                        // showNotification(msg.responseJSON.message, 'danger');
+                        console.log('reviewForm sent fail')
+                    });
+            }
+        });
+
     </script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="/__/firebase/7.16.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="/__/firebase/7.16.1/firebase-analytics.js"></script>
+
+    <!-- Initialize Firebase -->
+    <script src="/__/firebase/init.js"></script>
 </body>
 
 </html>
