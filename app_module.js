@@ -33,15 +33,15 @@ app.use(express.static('./public'))
 //     mod.adminReview(req, res)
 //     res.sendfile('./public/ReviewPost.html')
 // })
-app.get('/', (req, res) => {
-    // const productId = req.params.productId
-    // mod.adminReview(productId, req, res)
-    res.sendfile('./public/ReviewPost.html')
-})
+// app.get('/', (req, res) => {
+//     // const productId = req.params.productId
+//     // mod.adminReview(productId, req, res)
+//     res.sendfile('./public/ReviewPost.html')
+// })
 
-app.get('/getTop6Post', (req, res)=>{
-    mod.getTop6PostFromDb(res);
-})
+// app.get('/getTop6Post', (req, res)=>{
+//     mod.getTop6PostFromDb(res);
+// })
 
 // app.get('/loaiQua', (req, res)=>{
 //     mod.getFruits(req, res);
