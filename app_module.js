@@ -55,10 +55,10 @@ app.get('/', (req, res) => {
 // app.get('/oldestPosts', (req, res)=>{
 //     mod.getOldestPost(res);
 // })
-// app.post('/ReviewPost', (req, res) => {
-//     mod.reviewPost(req, res);
-//     console.log('Review post done! :p')
-// })
+app.post('/ReviewPost', (req, res) => {
+    mod.reviewPost(req, res);
+    console.log('Review post done! :p')
+})
 
 // app.get('/?id', (req, res) => {
 //     const id = req.params.id;
