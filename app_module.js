@@ -1,4 +1,4 @@
-var PORT = process.env.PORT || 3003
+var PORT = process.env.PORT || 2003
 const mod = require('./module')
 const express = require('express')
 const app = express()
@@ -18,14 +18,14 @@ app.get('/', (req, res) => {
 //     mod.selectAllFruit(req, res)
 // })
 
-// app.get('/insertNewFruit', (req, res) => {
-//     mod.insertNewFruit(req, res)
-// })
+app.get('/insertNewFruit', (req, res) => {
+    mod.insertNewFruit(req, res)
+})
 
 
-// app.get('/insertNewInformationOfFruit', (req, res) => {
-//     mod.insertNewInformationOfFruit(req, res)
-// })
+app.get('/insertNewInformationOfFruit', (req, res) => {
+    mod.insertNewInformationOfFruit(req, res)
+})
 
 // app.use(express.static('./public'))
 // app.set('view engine', 'ejs')

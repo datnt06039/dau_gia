@@ -246,8 +246,8 @@ exports.reviewPostById = function (productId, req, res) {
     var queryStr = "SELECT distinct p.fruit_id, p.title as 'Tiêu đề', f.title as 'fruit_name', u.name, p.date_created, p.status"
         + " FROM `semo_2.0`.product p"
         + " left join `semo_2.0`.fruit f on p.fruit_id = f.id"
-        + " left join `semo_2.0`.user u on p.user_id = u.id"
-    con.query(queryStr,
+        + " left join `semo_2.0`.user u on p.user_id = u.id where p.id = ?"
+    con.query(queryStr, [productId],
         function (err, rows) {
             if (rows === undefined) {
                 console.log('Error rows is undefined')
