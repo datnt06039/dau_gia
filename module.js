@@ -310,13 +310,14 @@ exports.getFruits = function (req, res) {
 //Created by: HaPTH
 exports.getNewestPosts = function (res) {
     console.log('Access function getNewestPost')
-    var queryStr = "select  p.id as 'product_id', a.views, media_url, p.title, p.price_cur, datediff(a.date_closure, a.date_created) 'remain_day',"
-        + " p.weight, ad.province  from `semo_2.0`.product p"
-        + " left join `semo_2.0`.product_media pm on p.id = pm.product_id"
-        + " left join `semo_2.0`.auction a on p.id = a.product_id"
-        + " left join `semo_2.0`.address ad on p.user_id = ad.user_id"
-        + " order by a.date_created desc"
-        + " limit 6"
+    var queryStr = "select  p.id as 'product_id', a.views, media_url, p.title, p.price_cur, datediff(a.date_closure, a.date_created) 'remain_day', "
+    + " p.weight, ad.province  from `semo_2.0`.product p"
+    + " left join `semo_2.0`.product_media pm on p.id = pm.product_id"
+    + " left join `semo_2.0`.auction a on p.id = a.product_id"
+    + " left join `semo_2.0`.address ad on p.user_id = ad.user_id"
+    + " where display_first = 1 and auction_status = 1"
+    + " order by a.date_created desc"
+    + " limit 6"
 
     con.query(queryStr, function (err, results) {
         if (err) {
@@ -336,13 +337,14 @@ exports.getNewestPosts = function (res) {
 //Created by: HaPTH
 exports.getOldestPost = function (res) {
     console.log('Access function getOldestPost')
-    var queryStr = "select  p.id as 'product_id', a.views, media_url, p.title, p.price_cur, datediff(a.date_closure, a.date_created) 'remain_day',"
-        + " p.weight, ad.province  from `semo_2.0`.product p"
-        + " left join `semo_2.0`.product_media pm on p.id = pm.product_id"
-        + " left join `semo_2.0`.auction a on p.id = a.product_id"
-        + " left join `semo_2.0`.address ad on p.user_id = ad.user_id"
-        + " order by a.date_created asc"
-        + " limit 6"
+    var queryStr = "select  p.id as 'product_id', a.views, media_url, p.title, p.price_cur, datediff(a.date_closure, a.date_created) 'remain_day', "
+    + " p.weight, ad.province  from `semo_2.0`.product p"
+    + " left join `semo_2.0`.product_media pm on p.id = pm.product_id"
+    + " left join `semo_2.0`.auction a on p.id = a.product_id"
+    + " left join `semo_2.0`.address ad on p.user_id = ad.user_id"
+    + " where display_first = 1 and auction_status = 1"
+    + " order by a.date_created asc"
+    + " limit 6"
 
     con.query(queryStr, function (err, results) {
         if (err) {
