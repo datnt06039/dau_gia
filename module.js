@@ -310,7 +310,7 @@ exports.getFruits = function (req, res) {
 //Created by: HaPTH
 exports.getNewestPosts = function (res) {
     console.log('Access function getNewestPost')
-    var queryStr = "select  p.id as 'product_id', a.views, media_url, p.title, p.price_cur, datediff(a.date_closure, a.date_created) 'remain_day', "
+    var queryStr = "select  p.id as 'product_id', a.views, media_url, p.title, p.price_cur, datediff(a.date_closure, CURDATE()) 'remain_day', "
     + " p.weight, ad.province  from `semo_2.0`.product p"
     + " left join `semo_2.0`.product_media pm on p.id = pm.product_id"
     + " left join `semo_2.0`.auction a on p.id = a.product_id"
@@ -337,7 +337,7 @@ exports.getNewestPosts = function (res) {
 //Created by: HaPTH
 exports.getOldestPost = function (res) {
     console.log('Access function getOldestPost')
-    var queryStr = "select  p.id as 'product_id', a.views, media_url, p.title, p.price_cur, datediff(a.date_closure, a.date_created) 'remain_day', "
+    var queryStr = "select  p.id as 'product_id', a.views, media_url, p.title, p.price_cur, datediff(a.date_closure, CURDATE()) 'remain_day', "
     + " p.weight, ad.province  from `semo_2.0`.product p"
     + " left join `semo_2.0`.product_media pm on p.id = pm.product_id"
     + " left join `semo_2.0`.auction a on p.id = a.product_id"
